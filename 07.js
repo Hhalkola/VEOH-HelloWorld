@@ -3,6 +3,7 @@ function sleep(ms){
 }
 
 class order{
+    product = [];
     delivered = false;
 
     constructor(id, message){
@@ -20,16 +21,22 @@ class order{
         //Simulate database delay or heavy calculation
 
         await sleep(2000);
-        const summary = 
+        let summary = 
     'order id: ' + " " + this.id + " " +
     'message: ' + " " + this.message + " " +
     'delivered: ' + " " + this.delivered;
+
+    add_product = (product) => {
+        this.product.push(product);
+    } 
     console.log('End summarize');
     return summary;
     }
 }
 //Create new order
 let order_obj = new order(1234, 'Second order');
+order_obj.add_product('coffee');
+order_obj.add_product('milk');
 
 //Call method with 1000ms delay and convert delivered status to true
 order_obj.deliver_method().then(() =>{
